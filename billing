@@ -1,0 +1,106 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNqkWnMH2LloNmtCqVo/LNv",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/ebinhh8-source/PYTHON/blob/main/billing\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "item = input(\"Item: \")\n",
+        "price = float(input(\"Price: \"))\n",
+        "quantity = int(input(\"Quantity: \"))\n",
+        "member = input(\"Member (yes/no): \")\n",
+        "\n",
+        "if price <= 0 or quantity <= 0:\n",
+        "    print(\"Error: Price and quantity must be greater than 0.\")\n",
+        "else:\n",
+        "    subtotal = price * quantity\n",
+        "\n",
+        "    if subtotal >= 5000:\n",
+        "        discount_rate = 10\n",
+        "    elif subtotal >= 2000:\n",
+        "        discount_rate = 5\n",
+        "    else:\n",
+        "        discount_rate = 0\n",
+        "\n",
+        "    if member == \"yes\":\n",
+        "        discount_rate += 2\n",
+        "\n",
+        "    discount = subtotal * discount_rate / 100\n",
+        "    after_discount = subtotal - discount\n",
+        "\n",
+        "    gst = after_discount * 18 / 100\n",
+        "    amount = after_discount + gst\n",
+        "\n",
+        "    if amount > 1000:\n",
+        "        delivery = 0\n",
+        "        delivery_text = \"Free\"\n",
+        "    else:\n",
+        "        delivery = 50\n",
+        "        delivery_text = \"50.00\"\n",
+        "\n",
+        "    total = amount + delivery\n",
+        "\n",
+        "    print(\"\\n------ BILL ------\")\n",
+        "    print(f\"Item        : {item}\")\n",
+        "    print(f\"Subtotal    : {subtotal:.2f}\")\n",
+        "    print(f\"Discount    : {discount:.2f}   ({discount_rate}%)\")\n",
+        "    print(f\"GST (18%)   : {gst:.2f}\")\n",
+        "    print(f\"Delivery    : {delivery_text}\")\n",
+        "    print(f\"TOTAL       : {total:.2f}\")\n",
+        ""
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ru5aL3NVXbiG",
+        "outputId": "d740dd92-fefe-44f3-faba-8821a500c8ba"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Item: laptops\n",
+            "Price: 900000\n",
+            "Quantity: 89999\n",
+            "Member (yes/no): yes\n",
+            "\n",
+            "------ BILL ------\n",
+            "Item        : laptops\n",
+            "Subtotal    : 80999100000.00\n",
+            "Discount    : 9719892000.00   (12%)\n",
+            "GST (18%)   : 12830257440.00\n",
+            "Delivery    : Free\n",
+            "TOTAL       : 84109465440.00\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
